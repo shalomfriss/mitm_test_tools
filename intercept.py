@@ -58,18 +58,17 @@ def response(flow: http.HTTPFlow) -> None:
         # Check if the file already exists
         file_path = Path(filename)
         if file_path.exists():
+
             # Read the existing file contents
             with open(file_path, "r", encoding="utf-8") as existing_file:
                 existing_content = existing_file.read()
             
             # Set the response content to the existing file contents
             flow.response.text = existing_content
-            flow.response.headers["Content-Type"] = "text/plain"
-            # print(f"File {filename} already exists. Skipping save.")
+            # flow.response.headers["Content-Type"] = "text/plain"
             return
         
         # Save the response content to the file
         with open(filename, "w", encoding="utf-8") as f:
             f.write(flow.response.text)
-            # print(f"Saved response to: {filename}")
         
