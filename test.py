@@ -54,7 +54,7 @@ def response(flow: http.HTTPFlow) -> None:
         hashed_filename = hashlib.sha256(full_url.encode()).hexdigest()
         safe_filename = hashed_filename[:32]  # Use first 32 characters of the hash
         filename = f"{saved_file_dir}/{safe_filename}.txt"
-
+        
         # Check if the file already exists
         file_path = Path(filename)
         if file_path.exists():
